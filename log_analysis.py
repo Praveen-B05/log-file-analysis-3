@@ -1,9 +1,6 @@
 from flask import Flask, request, render_template_string
 import os
-
 app = Flask(__name__)
-
-# THREAT DATABASE (Full Details)
 THREATS = {
     "malware": {
         "score": 80,
@@ -62,10 +59,6 @@ THREATS = {
         "fix": "Change passwords, activate 2FA, review access logs."
     }
 }
-
-# ======================================================
-# HTML TEMPLATE (single page)
-# ======================================================
 HTML = """
 <!DOCTYPE html>
 <html>
@@ -165,10 +158,6 @@ new Chart(document.getElementById('chart'), {
 </body>
 </html>
 """
-
-# ======================================================
-# ANALYSIS FUNCTION (creates FULL REPORT)
-# ======================================================
 def analyze_file(path, filename):
     text = open(path, "r", errors="ignore").read().lower()
 
@@ -209,10 +198,6 @@ def analyze_file(path, filename):
     """
 
     return details, report, labels, values, colors
-
-# ======================================================
-# ROUTE
-# ======================================================
 @app.route("/", methods=["GET", "POST"])
 def home():
 
@@ -238,3 +223,4 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
